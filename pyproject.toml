@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "seedqr"
+version = "0.1.0"
+description = ""
+authors = ["David A"]
+# readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pip = "^23.3.1"
+embit = "^0.7.0"
+numpy = "^1.22.4"
+opencv-python = "^4.6.0.66"
+Pillow = "^9.4.0"
+qrcode = "^7.3.1"
+six = "^1.16.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# Install 'urtypes' & 'pyzbar' packages from GitHub repos
+# ****** MUST BE DONE IN VIRTUAL ENVIRONMENT (poetry shell) ******
+# ##############################################################################
+# pip install -e git+https://github.com/selfcustody/urtypes.git@7fb280eab3b3563dfc57d2733b0bf5cbc0a96a6a#egg=urtypes && pip install -e git+https://github.com/seedsigner/pyzbar.git@c3c237821c6a20b17953efe59b90df0b514a1c03#egg=pyzbar
+
+
+# Installing project
+# cd to project folder - which is where this .toml file is located.
+# Run $ poetry config virtualenvs.in-project true (this will create a .venv folder - the virtual environment - inside the project folder).
+
+# Start poetry: $ poetry shell
+# Install project: $ poetry install
+# IMPORTANT: The 'urtypes' & 'pyzbar' packages need to be install manually inside poetry shell - see above.
+
+# Run chosen project: $ python src/mnemonic_generator.py

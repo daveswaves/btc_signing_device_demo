@@ -1,0 +1,104 @@
+URs Standard
+
+Uniform Resources (URs) Standard: A binary serialization protocol for encoding and transmitting structured data over QR codes.
+
+
+xpub6DG91CTsDWR8DokUUMfSXx9XpjH7UAgsqVT5nN3XnZDdQzeB1da4GrLhB1bkpp2FEq8mvkpLgGyNi8zqrVXH162i5f7XPnWVFtXfjRTKEpu
+
+The seedsigner project creates the following list to generate an animated QR code (Sparrow wallet format) from the previous xpub.
+
+['UR:CRYPTO-ACCOUNT/1-4/LPADAACSJKCYZOVOWMDIHDCAOEADCYSFMYJTGDAOLYTAADMWTAADDLOXAXHDCLAXWECXETHHHHCXIMGAFSUYSAMUEE',
+ 'UR:CRYPTO-ACCOUNT/2-4/LPAOAACSJKCYZOVOWMDIHDCADPEEQDSERORHMEBBSWWSJPWDNEJLCXFRNEDSFPWNETEEEYAAHDCXLPKBKKMNDRIHSB',
+ 'UR:CRYPTO-ACCOUNT/3-4/LPAXAACSJKCYZOVOWMDIHDCACSBSBZMUNLDYYAONSOOYRFJOMOMOASSEZSPKIHGDSAGMWZKTYTKBGTZTLTYAWLLKHG',
+ 'UR:CRYPTO-ACCOUNT/4-4/LPAAAACSJKCYZOVOWMDIHDCAAMTAADDYOTADLNCSGHYKAEYKAEYKAOCYSFMYJTGDAXAXAYCYUYAASSRSAEHKRSASBA']
+ 
+Please explain.
+ 
+]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+
+The provided information appears to relate to generating animated QR codes for encoding Bitcoin wallet data in a secure and compact format. Let's break this down:
+
+---
+
+### **1. The Purpose of the Animated QR Code**
+- **Why an animated QR code?**
+  - When dealing with hardware wallets, air-gapped devices (devices not connected to the internet), or other secure Bitcoin wallet tools like the **SeedSigner**, transmitting sensitive information such as an **extended public key (xpub)** requires a secure and reliable method. A standard QR code often cannot hold enough data for larger information like an xpub. 
+  - **Animated QR codes** solve this by splitting the data into multiple frames. Each frame is a portion of the data, and the receiving device reconstructs the full information after scanning all frames.
+
+- **What is being encoded?**
+  - The xpub (`xpub6DG91CT...RTKEpu`) is encoded using the **UR (Uniform Resources) format**, which is part of the **Bitcoin UR Standard**. This standard is designed to make it easier to transmit Bitcoin-related data (like keys, seeds, or transactions) in a compact, interoperable, and secure way.
+
+---
+
+### **2. Explanation of the "UR" Standard**
+The **UR format (Uniform Resources)** is a binary serialization protocol for encoding and transmitting structured data over QR codes. It's part of the [BC UR](https://github.com/BlockchainCommons/Research) standard developed by Blockchain Commons.
+
+Here’s a breakdown of the UR format used here:
+- **UR:** Indicates that the format follows the UR standard.
+- **CRYPTO-ACCOUNT:** The type of data being transmitted. In this case, it's a crypto account, such as an xpub.
+- **1-4, 2-4, 3-4, 4-4:** These specify the current fragment and the total number of fragments. For example:
+  - `1-4` means this is the **first fragment** of a total of **4 fragments**.
+  - `4-4` means this is the **last fragment**.
+- **Payload:** The encoded data follows the `/` after the fragment indicator.
+
+---
+
+### **3. The List of Fragments**
+The `['UR:CRYPTO-ACCOUNT/...']` list shows the four fragments of the animated QR code that were generated to encode the xpub. Each fragment contains part of the xpub data.
+
+#### Fragment Example Breakdown:
+For the first fragment:
+```
+UR:CRYPTO-ACCOUNT/1-4/LPADAACSJKCYZOVOWMDIHDCAOEADCYSFMYJTGDAOLYTAADMWTAADDLOXAXHDCLAXWECXETHHHHCXIMGAFSUYSAMUEE
+```
+- `UR:CRYPTO-ACCOUNT/1-4`: 
+  - UR format, for crypto account data, fragment 1 of 4.
+- `LPADAACSJKCYZOV...`: 
+  - The payload containing part of the encoded xpub. This payload is compact and encrypted for security and efficiency.
+
+All four fragments together form the complete xpub when scanned in sequence.
+
+---
+
+### **4. How is the xpub Encoded into the UR Format?**
+The process typically involves these steps:
+1. **Serialization of the xpub:**
+   - The xpub is serialized into a standardized binary format according to the UR protocol.
+2. **Fragmentation:**
+   - The binary data is split into multiple fragments to be encoded into QR codes (in this case, 4 fragments).
+3. **Encoding:**
+   - Each fragment is encoded into the UR string format, which includes the type of data, fragment details, and a payload.
+4. **Animated QR Generation:**
+   - Each UR string is turned into an individual QR code, which can then be displayed sequentially as part of an animation.
+
+---
+
+### **5. Why Use This Method?**
+This method has several benefits:
+- **Air-gapped device compatibility:**
+  - Many hardware wallets or secure devices are intentionally offline for security. Animated QR codes allow secure communication without direct connectivity.
+- **Standardization and Interoperability:**
+  - The UR standard ensures that the data can be decoded by any wallet or software that supports the same standard (e.g., Sparrow Wallet, SeedSigner, BlueWallet).
+- **Compact and Secure:**
+  - The binary format minimizes the size of the data, while the UR standard ensures its integrity during transmission.
+
+---
+
+### **6. Sparrow Wallet and SeedSigner**
+- **SeedSigner**: A hardware device designed for secure Bitcoin signing without being connected to the internet. It uses animated QR codes to transfer data like xpubs or partially signed Bitcoin transactions (PSBTs).
+- **Sparrow Wallet**: A software Bitcoin wallet that supports advanced features like multisig, hardware wallet integration, and QR code scanning. Sparrow Wallet can decode the animated QR codes generated by SeedSigner to import the xpub.
+
+---
+
+### **7. Process Overview**
+1. Generate the xpub (e.g., using SeedSigner).
+2. Encode the xpub into the UR format and split it into fragments.
+3. Display each fragment as a frame of an animated QR code.
+4. Scan the animated QR code with Sparrow Wallet (or similar software).
+5. Sparrow Wallet reconstructs the xpub from the fragments.
+
+This method ensures secure and efficient transmission of Bitcoin wallet data.
+
+---
+
+If you need further clarification or a walkthrough of creating animated QR codes, let me know!
